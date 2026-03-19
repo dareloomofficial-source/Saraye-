@@ -13,7 +13,6 @@ const Navbar = () => {
     } else {
       document.body.style.overflow = 'unset';
     }
-    // Cleanup on unmount
     return () => { document.body.style.overflow = 'unset'; };
   }, [mobileOpen]);
 
@@ -33,7 +32,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center group active:scale-95 transition-transform">
             <div className="w-12 h-12 rounded-full border-2 border-gold/50 flex items-center justify-center p-1.5 overflow-hidden shadow-[0_0_15px_rgba(212,175,55,0.2)] bg-[#111]">
               <img 
-                src="/saraye-logo.png" // Update with your exact filename in public/
+                src="/saraye-logo.png" 
                 alt="Saraye Logo" 
                 className="w-full h-full object-contain"
               />
@@ -56,24 +55,20 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* 2. Fullscreen Mobile Menu (Fix for Messy Overlay) */}
+      {/* 2. Fullscreen Mobile Menu */}
       <div className={`fixed inset-0 bg-black z-[90] transition-transform duration-300 ease-in-out ${
         mobileOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col items-center justify-center h-screen gap-10 text-3xl font-bold text-white px-8">
-          
           <Link to="/" onClick={() => setMobileOpen(false)} className="hover:text-gold active:scale-95">
             {t.home}
           </Link>
-          
           <Link to="/#stores" onClick={() => setMobileOpen(false)} className="hover:text-gold active:scale-95">
             {t.stores}
           </Link>
-          
           <hr className="border-gold/20 w-1/4" />
-          
           <a 
-            href="https://wa.me/919099484892?text=Hi%20Saraye%20Team%2C%20I%20want%20to%20list%20my%20business"
+            href="https://wa.me/919099484892?text=Hi%20Saraye%20Team"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 text-gold text-2xl"
@@ -83,8 +78,9 @@ const Navbar = () => {
           </a>
         </div>
       </div>
-    </nav>
+    </> // Yahan pehle </nav> tha, jo galat tha. Ab ye fixed hai.
   );
 };
 
 export default Navbar;
+        
