@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+// src/components/Navbar.jsx
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Globe, MessageCircle } from 'lucide-react';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lang, setLang] = useState('en');
-
-  // Prevent background scrolling when mobile menu is open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [mobileOpen]);
+  const [lang, setLang] = useState('en'); // en / hi
 
   const toggleLang = () => setLang(lang === 'en' ? 'hi' : 'en');
 
@@ -23,64 +14,70 @@ const Navbar = () => {
     : { home: 'Home', stores: 'Stores', contact: 'Contact' };
 
   return (
-    <>
-      {/* 1. Main Navbar Header */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-black border-b border-gold/10 px-6 py-2">
-        <div className="max-w-7xl mx-auto flex justify-between items-center h-[60px]">
-          
-          {/* Circular Logo Setup */}
-          <Link to="/" className="flex items-center group active:scale-95 transition-transform">
-            <div className="w-12 h-12 rounded-full border-2 border-gold/50 flex items-center justify-center p-1.5 overflow-hidden shadow-[0_0_15px_rgba(212,175,55,0.2)] bg-[#111]">
-              <img 
-                src="/saraye-logo.png" 
-                alt="Saraye Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </Link>
-
-          {/* Right Side: Language + Menu Button */}
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={toggleLang} 
-              className="px-3 py-1 border border-gold/30 rounded-lg text-gold text-xs font-bold"
-            >
-              <Globe size={14} className="inline mr-1" /> {lang === 'en' ? 'हिन्दी' : 'EN'}
-            </button>
-
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="text-gold p-1.5">
-              {mobileOpen ? <X size={32} /> : <Menu size={32} />}
-            </button>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-xl border-b border-gold/30 shadow-lg shadow-gold/5">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        
+        {/* Logo - Big & Gold */}
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="text-4xl md:text-5xl font-heading font-black tracking-tighter text-gold group-hover:scale-105 transition-transform">
+            SARAYE
           </div>
-        </div>
-      </nav>
+          {/* Optional: Add small tagline or icon */}
+          <span className="text-gold/70 text-sm md:text-base font-medium hidden md:block">
+            Hotels • Restaurants • Shops
+          </span>
+        </Link>
 
-      {/* 2. Fullscreen Mobile Menu */}
-      <div className={`fixed inset-0 bg-black z-[90] transition-transform duration-300 ease-in-out ${
-        mobileOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-        <div className="flex flex-col items-center justify-center h-screen gap-10 text-3xl font-bold text-white px-8">
-          <Link to="/" onClick={() => setMobileOpen(false)} className="hover:text-gold active:scale-95">
-            {t.home}
-          </Link>
-          <Link to="/#stores" onClick={() => setMobileOpen(false)} className="hover:text-gold active:scale-95">
-            {t.stores}
-          </Link>
-          <hr className="border-gold/20 w-1/4" />
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-10 text-lg font-medium">
+          <Link to="/" className="hover:text-gold transition">{t.home}</Link>
+          <Link to="/#stores" className="hover:text-gold transition">{t.stores}</Link>
           <a 
-            href="https://wa.me/919099484892?text=Hi%20Saraye%20Team"
+            href={`https://wa.me/919099484892?text=Hi%20Saraye%20Team%2C%20I%20want%20to%20list%20my%20business`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-gold text-2xl"
-            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2 px-6 py-3 bg-gold/10 border border-gold/40 rounded-xl hover:bg-gold hover:text-black transition"
           >
-            <MessageCircle size={28} /> {lang === 'hi' ? 'बिज़नेस जोड़ें' : 'List Your Business'}
+            <MessageCircle size={20} />
+            List Your Business
           </a>
         </div>
+
+        {/* Right side: Language + Mobile toggle */}
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={toggleLang} 
+            className="flex items-center gap-2 text-gold hover:text-white transition text-sm md:text-base"
+          >
+            <Globe size={20} /> {lang === 'en' ? 'हिंदी' : 'EN'}
+          </button>
+
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-gold">
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
-    </> // Yahan pehle </nav> tha, jo galat tha. Ab ye fixed hai.
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-black/95 border-t border-gold/20 py-6 px-6">
+          <div className="flex flex-col gap-6 text-lg">
+            <Link to="/" onClick={() => setMobileOpen(false)} className="hover:text-gold">{t.home}</Link>
+            <Link to="/#stores" onClick={() => setMobileOpen(false)} className="hover:text-gold">{t.stores}</Link>
+            <a 
+              href={`https://wa.me/919099484892?text=Hi%20Saraye%20Team%2C%20I%20want%20to%20list%20my%20business`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-gold hover:text-white"
+              onClick={() => setMobileOpen(false)}
+            >
+              <MessageCircle size={22} /> List Your Business
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 
 export default Navbar;
-        
