@@ -1,41 +1,41 @@
-// 🔥 MOCK DATA (works instantly)
-// Replace with real Firebase later (just uncomment the import section)
+{
+  id: "new-dens-pizza",  // Unique ID (use slug or number like "5")
+  name: "New Den's Pizza & Fast Food Corner",
+  type: "restaurant",
+  address: "Your Mumbai Address (e.g., Andheri West / Bandra / or Nagar Palika Road, Ghatampur if UP)",  // Update to exact Mumbai spot if available
+  rating: 4.1,
+  images: [
+    "https://your-hosted-image-url/poster.jpg",  // Upload the full poster you shared to public/ or Firebase Storage later
+    "https://picsum.photos/id/292/1200/600"     // Placeholder pizza image
+  ],
+  description: "Fresh pizzas, cheesy fast food, burgers, Maggi, Chinese & more. Home delivery available! EAT. TREAT. ENJOY 🍕",
+  menu: [
+    // Sandwiches (from your menu)
+    { id: 501, name: "Grilled Sandwich", price: 50, image: "https://picsum.photos/id/292/300/300" },
+    { id: 502, name: "Veg Cheese Sandwich", price: 60, image: "https://picsum.photos/id/201/300/300" },
+    { id: 503, name: "Cheese Corn Sandwich", price: 70, image: "https://picsum.photos/id/160/300/300" },
+    { id: 504, name: "Paneer Cheese Sandwich", price: 80, image: "https://picsum.photos/id/180/300/300" },
+    { id: 505, name: "Tandoori Pizza Sandwich", price: 100, image: "https://picsum.photos/id/1015/300/300" },
 
-export const stores = [
-  {
-    id: "1", name: "Spice Palace", type: "restaurant", address: "Andheri West, Mumbai", rating: 4.8,
-    images: ["https://picsum.photos/id/1015/1200/600", "https://picsum.photos/id/292/800/600"],
-    description: "Authentic Indian cuisine with futuristic flair.",
-    menu: [
-      { id: 101, name: "Butter Chicken", price: 349, image: "https://picsum.photos/id/292/300/300" },
-      { id: 102, name: "Paneer Tikka Masala", price: 279, image: "https://picsum.photos/id/201/300/300" },
-      { id: 103, name: "Dal Makhani", price: 229, image: "https://picsum.photos/id/160/300/300" }
-    ],
-    rooms: [], tables: ["18:00", "19:00", "20:00", "21:00"], reviews: [{user:"Aarav", text:"Mind-blowing!", rating:5}]
-  },
-  {
-    id: "2", name: "Taj Haven", type: "hotel", address: "Marine Drive, Mumbai", rating: 4.9,
-    images: ["https://picsum.photos/id/1036/1200/600"],
-    description: "5-star luxury with ocean views.",
-    menu: [], 
-    rooms: [
-      { id: 201, type: "Ocean Suite", price: 8999, image: "https://picsum.photos/id/160/300/300" },
-      { id: 202, type: "Deluxe Room", price: 4999, image: "https://picsum.photos/id/201/300/300" }
-    ],
-    tables: ["10:00", "11:00"], reviews: [{user:"Meera", text:"Best stay ever!", rating:5}]
-  },
-  {
-    id: "3", name: "Golden Luxe Shop", type: "shop", address: "Bandra, Mumbai", rating: 4.7,
-    images: ["https://picsum.photos/id/106/1200/600"],
-    description: "Premium lifestyle store.",
-    menu: [
-      { id: 301, name: "Luxury Watch", price: 14999, image: "https://picsum.photos/id/180/300/300" },
-      { id: 302, name: "Designer Sunglasses", price: 4999, image: "https://picsum.photos/id/201/300/300" }
-    ],
-    rooms: [], tables: [], reviews: [{user:"Rohan", text:"Top quality!", rating:4}]
-  }
-]
+    // Pizzas (small/medium/large – you can simplify or add variants later)
+    { id: 506, name: "Cheese Lovers Pizza (Medium)", price: 120, image: "https://picsum.photos/id/292/300/300" },
+    { id: 507, name: "Onion Pizza (Large)", price: 180, image: "https://picsum.photos/id/201/300/300" },
+    { id: 508, name: "Tandoori Paneer Pizza (Large)", price: 280, image: "https://picsum.photos/id/160/300/300" },
+    { id: 509, name: "Den's Special Pizza (Large)", price: 300, image: "https://picsum.photos/id/180/300/300" },
 
-// Export functions (switch to Firebase later)
-export const getStores = () => stores
-export const getStoreById = (id) => stores.find(s => s.id === id)
+    // Burgers
+    { id: 510, name: "Aloo Tikki Burger", price: 30, image: "https://picsum.photos/id/1015/300/300" },
+    { id: 511, name: "Paneer Burger", price: 40, image: "https://picsum.photos/id/292/300/300" },
+
+    // Maggi & More (add as needed)
+    { id: 512, name: "Masala Maggi", price: 30, image: "https://picsum.photos/id/201/300/300" },
+    { id: 513, name: "Chilli Paneer (Dry & Gravy)", price: 140, image: "https://picsum.photos/id/160/300/300" }
+    // ... Add soups, rice, Chinese, pasta, etc. similarly
+  ],
+  rooms: [],           // Not a hotel
+  tables: ["18:00", "19:00", "20:00", "21:00"],  // Example booking slots
+  reviews: [
+    { user: "Food Lover", text: "Cheesy pizzas at great prices! Fast delivery.", rating: 4.5 },
+    { user: "Local", text: "Best veg fast food in area.", rating: 4 }
+  ]
+},
